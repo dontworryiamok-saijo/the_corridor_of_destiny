@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>運命の廊｜アンソロジー告知サイト</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;700&family=Zen+Kaku+Gothic+New:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #771122;
+    --ink: #f3f3f3;
+    --ink-soft: #d9cdd0;
+    --line: rgba(243,243,243,.32);
+    --accent: #f3f3f3;
+    --panel: #8a2236;
+    --paper: transparent;
+    --serif: "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", serif;
+    --sans: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #771122;
+      --ink: #f3f3f3;
+      --ink-soft: #d9cdd0;
+      --line: rgba(243,243,243,.32);
+      --accent: #f3f3f3;
+      --panel: #8a2236;
+    --paper: transparent;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #771122;
+    --ink: #f3f3f3;
+    --ink-soft: #d9cdd0;
+    --line: rgba(243,243,243,.32);
+    --accent: #f3f3f3;
+    --panel: #8a2236;
+    --paper: transparent;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    color-scheme: dark;
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet {
+    max-width: 62rem; margin: 0 auto;
+    background: var(--paper); color: var(--ink);
+  }
+  .wrap { margin: 0 auto; padding: 0 clamp(1.15rem, 5vw, 3.5rem); }
+
+  /* ---------- header / tabs ---------- */
+  header { border-bottom: 1px solid var(--line); }
+  header .wrap {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1rem; flex-wrap: wrap; padding-top: 1.1rem; padding-bottom: 1.1rem;
+  }
+  .site-name { font-family: var(--serif); font-weight: 500; letter-spacing: .12em; font-size: .95rem; }
+  [role="tablist"] { display: flex; gap: 1.75rem; }
+  [role="tab"] {
+    appearance: none; background: none; border: 0; cursor: pointer;
+    font: inherit; font-size: .95rem; color: var(--ink-soft);
+    padding: .35rem 0; border-bottom: 2px solid transparent;
+    letter-spacing: .08em;
+    transition: color .2s, border-color .2s;
+  }
+  [role="tab"]:hover { color: var(--ink); }
+  [role="tab"][aria-selected="true"] { color: var(--ink); border-bottom-color: var(--accent); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 2px; }
+
+  /* ---------- panels ---------- */
+  [role="tabpanel"] { padding: 4rem 0 5rem; }
+  [role="tabpanel"][hidden] { display: none; }
+  .panel-in { animation: panelIn .35s ease both; }
+  @keyframes panelIn { from { opacity: 0; } to { opacity: 1; } }
+
+  /* ---------- top ---------- */
+  .hero { display: flex; gap: clamp(1.5rem, 5vw, 4rem); align-items: flex-start; }
+  .vtitle-wrap { display: flex; gap: 1.1rem; flex: none; }
+  .vtitle {
+    writing-mode: vertical-rl;
+    font-family: var(--serif); font-weight: 700;
+    font-size: clamp(3.2rem, 11vw, 7rem);
+    line-height: 1.1; letter-spacing: .18em; margin: 0;
+    animation: reveal 1.8s cubic-bezier(.3,.6,.2,1) both;
+  }
+  .vrule { width: 1px; background: var(--accent); align-self: stretch; opacity: .8; }
+  @keyframes reveal { from { clip-path: inset(-1em -1em 100% -1em); } to { clip-path: inset(-1em -1em -1em -1em); } }
+  .vtitle ruby { ruby-position: over; }
+  .vtitle rt { font-size: .2em; letter-spacing: .15em; font-weight: 500; }
+  .site-name rt { font-size: .5em; letter-spacing: .05em; }
+
+  .hero-text { padding-top: .5rem; min-width: 0; }
+  .kind { margin: 0 0 .4rem; color: var(--ink-soft); font-size: .9rem; letter-spacing: .1em; }
+  .theme { font-family: var(--serif); font-size: clamp(1.3rem, 3vw, 1.75rem); font-weight: 500; line-height: 1.6; margin: 0 0 1.75rem; }
+
+  h2 { font-family: var(--serif); font-weight: 500; font-size: 1.15rem; letter-spacing: .1em; margin: 0 0 1rem; }
+  .concept p { margin: 0 0 1.2em; max-width: 34em; }
+  .concept { margin-bottom: 2.5rem; }
+  .concept p { line-height: 2.3; }
+  .concept ruby { ruby-position: over; }
+  .concept rt { font-size: .55em; letter-spacing: .08em; color: var(--ink-soft); }
+
+  dl.facts { margin: 0; display: grid; grid-template-columns: max-content 1fr; border-top: 1px solid var(--line); max-width: 34rem; }
+  dl.facts dt, dl.facts dd { margin: 0; padding: .7rem 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
+  dl.facts dt { color: var(--ink-soft); padding-right: 2rem; }
+
+  /* ---------- authors ---------- */
+  .lead { color: var(--ink-soft); max-width: 36em; margin: 0 0 2.5rem; }
+  ul.authors {
+    list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line);
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(12.5rem, 1fr)); column-gap: 2rem;
+  }
+  ul.authors li {
+    padding: 1.1rem 0; border-bottom: 1px solid var(--line);
+    font-family: var(--serif); font-size: 1.25rem; font-weight: 500; letter-spacing: .08em;
+  }
+  .note-small { color: var(--ink-soft); font-size: .88rem; margin-top: 1.5rem; }
+
+  /* ---------- contact ---------- */
+  .contact-block { max-width: 36rem; }
+  .contact-block p { margin: 0 0 1.2em; }
+  .mail {
+    display: inline-block; font-family: var(--serif); font-size: clamp(1.2rem, 4.5vw, 1.7rem);
+    color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--accent);
+    padding-bottom: .15rem; word-break: break-all;
+  }
+  .mail:hover { color: var(--accent); }
+  a.plain { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  a.plain:hover { border-bottom-color: var(--accent); }
+  ul.advisors { list-style: none; margin: 0; padding: 0; }
+  ul.advisors li { padding: 0; }
+  .honorific { color: var(--ink-soft); font-size: .85rem; }
+  .contact-list { margin: 2rem 0 0; display: grid; grid-template-columns: max-content 1fr; border-top: 1px solid var(--line); }
+  .contact-list dt, .contact-list dd { margin: 0; padding: .8rem 0; border-bottom: 1px solid var(--line); font-size: .95rem; }
+  .contact-list dt { color: var(--ink-soft); padding-right: 2rem; }
+
+  footer { border-top: 1px solid var(--line); color: var(--ink-soft); font-size: .85rem; }
+  footer .wrap { padding-top: 1.5rem; padding-bottom: 2rem; }
+
+  /* ---------- small screens ---------- */
+  @media (max-width: 40rem) {
+    header .wrap { flex-direction: column; align-items: flex-start; gap: .6rem; }
+    [role="tablist"] { gap: 1.4rem; }
+    [role="tabpanel"] { padding: 2.5rem 0 3.5rem; }
+    .hero { gap: 1.25rem; }
+    .vtitle { font-size: clamp(2.6rem, 14vw, 4rem); }
+    dl.facts, .contact-list { grid-template-columns: 1fr; }
+    dl.facts dt, .contact-list dt { border-bottom: 0; padding-bottom: 0; padding-top: .8rem; }
+    dl.facts dd, .contact-list dd { padding-top: .1rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .vtitle, .panel-in { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+<header>
+  <div class="wrap">
+    <div class="site-name">運命の<ruby>廊<rp>（</rp><rt>わたどの</rt><rp>）</rp></ruby></div>
+    <div role="tablist" aria-label="ページ切り替え">
+      <button role="tab" id="tab-top" aria-controls="panel-top" aria-selected="true">トップ</button>
+      <button role="tab" id="tab-authors" aria-controls="panel-authors" aria-selected="false" tabindex="-1">執筆者</button>
+      <button role="tab" id="tab-contact" aria-controls="panel-contact" aria-selected="false" tabindex="-1">お問い合わせ</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ===== トップ ===== -->
+  <section role="tabpanel" id="panel-top" aria-labelledby="tab-top">
+    <div class="hero">
+      <div class="vtitle-wrap" aria-hidden="false">
+        <h1 class="vtitle">運命の<ruby>廊<rp>（</rp><rt>わたどの</rt><rp>）</rp></ruby></h1>
+        <span class="vrule" aria-hidden="true"></span>
+      </div>
+      <div class="hero-text">
+        <p class="kind">アンソロジー</p>
+        <p class="theme">日光榎木津ホテル内限定<br>関口巽総受けアンソロジー</p>
+
+        <div class="concept">
+          <h2>テーマとコンセプト</h2>
+          <!-- ▼ここにテーマ・コンセプトの文章を入れてください -->
+          <p>昭和二十九年、二月。雪化粧の日光に佇む<ruby>保養旅舎<rp>（</rp><rt>リゾートホテル</rt><rp>）</rp></ruby>。</p>
+          <p>廊下、ラウンジ、ロビー、客室──。日常から切り離された<ruby>陶酔的<rp>（</rp><rt>ユーフォリア</rt><rp>）</rp></ruby>な舞台で、<ruby>関口巽<rp>（</rp><rt>せきぐちたつみ</rt><rp>）</rp></ruby>と彼を取り巻く男たちの密かな蜜月を描きます。</p>
+          <p>（本アンソロジーは成人向けとして発行予定です。あらかじめご了承ください）</p>
+          <!-- ▲ここまで -->
+        </div>
+
+        <dl class="facts">
+          <dt>頒布予定</dt><dd>2027年5月3日</dd>
+          <dt>イベント</dt><dd>SUPER COMIC CITY 2027 -day1-</dd>
+          <dt>レーティング</dt><dd>成人向け</dd>
+          <dt>判型・頁数</dt><dd>未定</dd>
+          <dt>頒布価格</dt><dd>未定</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 執筆者 ===== -->
+  <section role="tabpanel" id="panel-authors" aria-labelledby="tab-authors" hidden>
+    <h2>執筆者</h2>
+    <p class="lead">本書に参加する執筆者の一覧です。（五十音順・敬称略）</p>
+
+    <ul class="authors">
+      <li>雨桜</li>
+      <li>金烏</li>
+      <li>こりうす</li>
+      <li>西条</li>
+      <li>ぜえー</li>
+      <li>ぜね</li>
+      <li>つくもとりー</li>
+      <li>なな</li>
+      <li>にじ</li>
+      <li>猫目由芽</li>
+      <li>はるしか</li>
+      <li>ふんふん</li>
+      <li>星檸檬</li>
+      <li>ポポび</li>
+      <li>まるいひと</li>
+      <li>まるべ</li>
+      <li>motimoti</li>
+    </ul>
+  </section>
+
+  <!-- ===== お問い合わせ ===== -->
+  <section role="tabpanel" id="panel-contact" aria-labelledby="tab-contact" hidden>
+    <h2>お問い合わせ</h2>
+    <div class="contact-block">
+      <p>本書に関するご質問は主催のDM（X）までご連絡ください。</p>
+      <p>
+        <a class="mail" href="https://x.com/dontworryiamok" target="_blank" rel="noopener">@dontworryiamok</a>
+      </p>
+      <dl class="contact-list">
+        <dt>企画・主催</dt><dd>西条：九蓮宝燈麻辣香鍋</dd>
+        <dt>SNS</dt><dd><a class="plain" href="https://x.com/dontworryiamok" target="_blank" rel="noopener">@dontworryiamok</a></dd>
+        <dt>アドバイザー</dt>
+        <dd>
+          <ul class="advisors">
+            <li>猫目由芽</li>
+            <li>星檸檬</li>
+            <li>まるいひと</li>
+          </ul>
+          <span class="honorific">（敬称略）</span>
+        </dd>
+        <dt>組版・データサポート</dt>
+        <dd>
+          <ul class="advisors">
+            <li>なな</li>
+          </ul>
+          <span class="honorific">（敬称略）</span>
+        </dd>
+      </dl>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">2027日光榎木津ホテル限定関口総受けアンソロ企画</div>
+</footer>
+</div>
+
+<script>
+(function () {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  var panels = tabs.map(function (t) { return document.getElementById(t.getAttribute('aria-controls')); });
+  var names = ['top', 'authors', 'contact'];
+
+  function show(index, updateHash) {
+    tabs.forEach(function (t, i) {
+      var on = i === index;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;
+      panels[i].hidden = !on;
+      if (on) {
+        panels[i].classList.remove('panel-in');
+        void panels[i].offsetWidth;
+        panels[i].classList.add('panel-in');
+      }
+    });
+    if (updateHash) {
+      try { history.replaceState(null, '', '#' + names[index]); } catch (e) {}
+    }
+  }
+
+  tabs.forEach(function (t, i) {
+    t.addEventListener('click', function () { show(i, true); window.scrollTo(0, 0); });
+    t.addEventListener('keydown', function (e) {
+      var next = null;
+      if (e.key === 'ArrowRight') next = (i + 1) % tabs.length;
+      if (e.key === 'ArrowLeft') next = (i - 1 + tabs.length) % tabs.length;
+      if (next !== null) { e.preventDefault(); show(next, true); tabs[next].focus(); }
+    });
+  });
+
+  var initial = names.indexOf((location.hash || '').replace('#', ''));
+  show(initial > -1 ? initial : 0, false);
+
+})();
+</script>
+</body>
+</html>
